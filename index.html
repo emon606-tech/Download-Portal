@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Flappy Bird Game</title>
   <style>
-    /* Body and game container */
     body {
       margin: 0;
       background: black;
@@ -21,14 +20,12 @@
       position: relative;
       width: 320px;
       height: 480px;
-      background: #222; /* slightly lighter than black */
+      background: #222;
       border: 2px solid #fff;
       border-radius: 8px;
       overflow: hidden;
       z-index: 10;
     }
-
-    /* Bird styling */
     #bird {
       position: absolute;
       width: 34px;
@@ -41,8 +38,6 @@
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
       z-index: 2;
     }
-
-    /* Pipes */
     .pipe {
       position: absolute;
       width: 60px;
@@ -50,8 +45,6 @@
       border-radius: 0 10px 10px 0;
       z-index: 1;
     }
-
-    /* Score text */
     #score {
       position: absolute;
       top: 10px;
@@ -63,8 +56,6 @@
       font-size: 18px;
       z-index: 10;
     }
-
-    /* Raindrop container behind game */
     #rain {
       position: fixed;
       top: 0;
@@ -73,11 +64,9 @@
       height: 100vh;
       pointer-events: none;
       overflow: hidden;
-      z-index: 1; /* behind game */
+      z-index: 1;
       background: transparent;
     }
-
-    /* Raindrop style */
     .raindrop {
       position: absolute;
       bottom: 100%;
@@ -88,8 +77,6 @@
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
-
-    /* Raindrop falling animation */
     @keyframes fall {
       to {
         transform: translateY(110vh);
@@ -109,25 +96,21 @@
   <script src="script.js"></script>
 
   <script>
-    // Create raindrops dynamically
     const rainContainer = document.getElementById('rain');
     const numberOfDrops = 100;
-
     for (let i = 0; i < numberOfDrops; i++) {
       const drop = document.createElement('div');
       drop.classList.add('raindrop');
-
-      // Random horizontal position across the viewport
       drop.style.left = Math.random() * 100 + 'vw';
-
-      // Random delay to spread drops out over time
       drop.style.animationDelay = (Math.random() * 5) + 's';
-
-      // Random animation duration for varying speed
       drop.style.animationDuration = (0.5 + Math.random() * 0.8) + 's';
-
       rainContainer.appendChild(drop);
     }
   </script>
+
+  <!-- ✅ PropellerAds Ad Code -->
+  <script async="async" data-cfasync="false" src="//pl26665847.profitableratecpm.com/fa67ee96a7e6200ab883bdd8d8259ea8/invoke.js"></script>
+  <div id="container-fa67ee96a7e6200ab883bdd8d8259ea8"></div>
+
 </body>
 </html>
