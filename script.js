@@ -1,19 +1,16 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
-// Backend-powered downloads
-const backend = 'https://missionpay-backend-production.up.railway.app';
-const backendDownloadEnglish = `${backend}/download`;
-const backendDownloadBangla = `${backend}/download?file=bangla`;
+// ✅ Download links you provided
+const downloadLinkEnglish = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
+const downloadLinkBangla  = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay%20বাংলা_.zip';
 
 function startDownloadEnglish() {
-  window.location.href = backendDownloadEnglish;
+  window.open(downloadLinkEnglish, '_blank');
 }
-
 function startDownloadBangla() {
-  window.location.href = backendDownloadBangla;
+  window.open(downloadLinkBangla, '_blank');
 }
 
-// Count users
 fetch(userRawUrl)
   .then(response => response.text())
   .then(data => {
@@ -24,7 +21,7 @@ fetch(userRawUrl)
     document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
 
-// Email modal functions
+// Email modal
 function openEmailModal() {
   document.getElementById('emailModal').style.display = 'flex';
 }
