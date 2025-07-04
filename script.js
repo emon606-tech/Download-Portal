@@ -1,15 +1,11 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
-// English version download link
 const downloadLinkEnglish = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay.zip';
-
-// Bangla version download link (replace with your actual Bangla version zip raw link)
-const downloadLinkBangla = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay_bangla.zip';
+const downloadLinkBangla  = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay_bangla.zip';
 
 function startDownloadEnglish() {
   window.open(downloadLinkEnglish, '_blank');
 }
-
 function startDownloadBangla() {
   window.open(downloadLinkBangla, '_blank');
 }
@@ -24,7 +20,7 @@ fetch(userRawUrl)
     document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
 
-// Email modal functions
+// Email Modal Functions
 function openEmailModal() {
   document.getElementById('emailModal').style.display = 'flex';
 }
@@ -39,7 +35,7 @@ function copyEmail() {
   setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Raining particles effect
+// Raining Background
 const canvas = document.getElementById('rainCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -51,16 +47,13 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 const particles = [];
-function createRainDrop() {
-  return {
+for (let i = 0; i < 100; i++) {
+  particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     length: Math.random() * 20 + 10,
     speed: Math.random() * 2 + 2
-  };
-}
-for (let i = 0; i < 100; i++) {
-  particles.push(createRainDrop());
+  });
 }
 
 function drawRain() {
@@ -68,7 +61,7 @@ function drawRain() {
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
   ctx.lineWidth = 1;
 
-  particles.forEach(p => {
+  for (const p of particles) {
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x, p.y + p.length);
@@ -78,7 +71,7 @@ function drawRain() {
       p.y = -p.length;
       p.x = Math.random() * canvas.width;
     }
-  });
+  }
 
   requestAnimationFrame(drawRain);
 }
