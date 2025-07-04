@@ -1,7 +1,7 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
-const downloadLinkEnglish = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay.zip';
-const downloadLinkBangla  = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay_bangla.zip';
+const downloadLinkEnglish = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
+const downloadLinkBangla  = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
 
 function startDownloadEnglish() {
   window.open(downloadLinkEnglish, '_blank');
