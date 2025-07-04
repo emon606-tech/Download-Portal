@@ -1,18 +1,23 @@
-// Change this to your deployed backend URL:
-const backendBaseUrl = 'https://missionpay-backend-production.up.railway.app';
-
-// URLs for user count (you can keep your existing URL)
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
-// Use backend download endpoints:
-function startDownloadEnglish() {
-  window.open(`${backendBaseUrl}/download/english`, '_blank');
-}
-function startDownloadBangla() {
-  window.open(`${backendBaseUrl}/download/bangla`, '_blank');
+function downloadFile(url, filename) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
-// Load user count from your raw user.txt file
+function startDownloadEnglish() {
+  downloadFile('https://missionpay-backend-production.up.railway.app/download/english', 'MissionPay-English.apk');
+}
+
+function startDownloadBangla() {
+  downloadFile('https://missionpay-backend-production.up.railway.app/download/bangla', 'MissionPay-Bangla.apk');
+}
+
+// Load user count
 fetch(userRawUrl)
   .then(response => response.text())
   .then(data => {
@@ -23,7 +28,7 @@ fetch(userRawUrl)
     document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
 
-// Email modal functions
+// Email modal
 function openEmailModal() {
   document.getElementById('emailModal').style.display = 'flex';
 }
@@ -38,10 +43,9 @@ function copyEmail() {
   setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Rain effect
+// Rain animation
 const canvas = document.getElementById('rainCanvas');
 const ctx = canvas.getContext('2d');
-
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
