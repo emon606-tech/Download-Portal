@@ -1,20 +1,11 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
-function downloadFile(url, filename) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
 function startDownloadEnglish() {
-  downloadFile('https://missionpay-backend-production.up.railway.app/download/english', 'MissionPay-English.apk');
+  window.location.href = 'https://missionpay-backend-production.up.railway.app/download/english';
 }
 
 function startDownloadBangla() {
-  downloadFile('https://missionpay-backend-production.up.railway.app/download/bangla', 'MissionPay-Bangla.apk');
+  window.location.href = 'https://missionpay-backend-production.up.railway.app/download/bangla';
 }
 
 // Load user count
