@@ -33,10 +33,9 @@ body {
   padding: 30px 20px;
   border-radius: 20px;
   max-width: 600px;
-  box-sizing: border-box;
   width: 90%;
-  position: relative;
   z-index: 1;
+  position: relative;
 }
 
 h1 {
@@ -61,7 +60,7 @@ h1 {
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 10px 0;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 15px rgba(30, 144, 255, 0.6);
 }
@@ -74,7 +73,6 @@ h1 {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 25px 10px 40px;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
-  box-sizing: border-box;
   z-index: 1;
   position: relative;
 }
