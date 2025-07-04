@@ -1,7 +1,8 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
+// ✅ Download links you provided
 const downloadLinkEnglish = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
-const downloadLinkBangla  = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
+const downloadLinkBangla  = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay%20বাংলা_.zip';
 
 function startDownloadEnglish() {
   window.open(downloadLinkEnglish, '_blank');
@@ -20,7 +21,7 @@ fetch(userRawUrl)
     document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
 
-// Email Modal Functions
+// Email modal
 function openEmailModal() {
   document.getElementById('emailModal').style.display = 'flex';
 }
@@ -35,7 +36,7 @@ function copyEmail() {
   setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Raining Background
+// Rain effect
 const canvas = document.getElementById('rainCanvas');
 const ctx = canvas.getContext('2d');
 
