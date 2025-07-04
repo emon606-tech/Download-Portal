@@ -1,22 +1,18 @@
-// Updated backend URL
-const backendUrl = 'https://missionpay-backend-production.up.railway.app';
+// Change this to your deployed backend URL:
+const backendBaseUrl = 'https://missionpay-backend-production.up.railway.app';
 
-// Download URLs proxied through backend
-const downloadLinkEnglish = `${backendUrl}/download/english`;
-const downloadLinkBangla = `${backendUrl}/download/bangla`;
-
-// Attach click handlers
-document.getElementById('downloadEnglishBtn').onclick = () => {
-  window.open(downloadLinkEnglish, '_blank');
-};
-document.getElementById('downloadBanglaBtn').onclick = () => {
-  window.open(downloadLinkBangla, '_blank');
-};
-
-
-// Fetch user count from raw GitHub file
+// URLs for user count (you can keep your existing URL)
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
+// Use backend download endpoints:
+function startDownloadEnglish() {
+  window.open(`${backendBaseUrl}/download/english`, '_blank');
+}
+function startDownloadBangla() {
+  window.open(`${backendBaseUrl}/download/bangla`, '_blank');
+}
+
+// Load user count from your raw user.txt file
 fetch(userRawUrl)
   .then(response => response.text())
   .then(data => {
@@ -27,7 +23,7 @@ fetch(userRawUrl)
     document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
 
-// Email modal
+// Email modal functions
 function openEmailModal() {
   document.getElementById('emailModal').style.display = 'flex';
 }
@@ -42,7 +38,7 @@ function copyEmail() {
   setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Rain effect canvas
+// Rain effect
 const canvas = document.getElementById('rainCanvas');
 const ctx = canvas.getContext('2d');
 
