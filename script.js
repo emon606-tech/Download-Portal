@@ -1,5 +1,5 @@
 // Change this to your deployed backend URL
-const backendUrl = 'https://your-railway-app.up.railway.app';
+const backendUrl = 'https://missionpay-backend-production.up.railway.app/';
 
 // Download URLs via backend proxy
 const downloadLinkEnglish = `${backendUrl}/download/english`;
