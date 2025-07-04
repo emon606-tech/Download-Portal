@@ -1,15 +1,20 @@
-const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
+// Change this to your deployed backend URL
+const backendUrl = 'https://your-railway-app.up.railway.app';
 
-// ✅ Download links you provided
-const downloadLinkEnglish = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay.zip';
-const downloadLinkBangla  = 'https://raw.githubusercontent.com/emonxxx11/zip-file-apk/main/MissionPay%20বাংলা_.zip';
+// Download URLs via backend proxy
+const downloadLinkEnglish = `${backendUrl}/download/english`;
+const downloadLinkBangla = `${backendUrl}/download/bangla`;
 
-function startDownloadEnglish() {
+// Download button handlers
+document.getElementById('downloadEnglishBtn').onclick = () => {
   window.open(downloadLinkEnglish, '_blank');
-}
-function startDownloadBangla() {
+};
+document.getElementById('downloadBanglaBtn').onclick = () => {
   window.open(downloadLinkBangla, '_blank');
-}
+};
+
+// Fetch user count from raw GitHub file
+const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
 
 fetch(userRawUrl)
   .then(response => response.text())
@@ -36,7 +41,7 @@ function copyEmail() {
   setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Rain effect
+// Rain effect canvas
 const canvas = document.getElementById('rainCanvas');
 const ctx = canvas.getContext('2d');
 
