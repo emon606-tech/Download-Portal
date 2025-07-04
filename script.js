@@ -1,17 +1,18 @@
-// Change this to your deployed backend URL
-const backendUrl = 'https://missionpay-backend-production.up.railway.app/';
+// Updated backend URL
+const backendUrl = 'https://missionpay-backend-production.up.railway.app';
 
-// Download URLs via backend proxy
+// Download URLs proxied through backend
 const downloadLinkEnglish = `${backendUrl}/download/english`;
 const downloadLinkBangla = `${backendUrl}/download/bangla`;
 
-// Download button handlers
+// Attach click handlers
 document.getElementById('downloadEnglishBtn').onclick = () => {
   window.open(downloadLinkEnglish, '_blank');
 };
 document.getElementById('downloadBanglaBtn').onclick = () => {
   window.open(downloadLinkBangla, '_blank');
 };
+
 
 // Fetch user count from raw GitHub file
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
