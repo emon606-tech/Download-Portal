@@ -1,140 +1,76 @@
-const bird = document.getElementById('bird');
-const game = document.getElementById('game');
-const scoreDisplay = document.getElementById('score');
+const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
+const downloadLink = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay.zip';
 
-let birdTop = 250;
-let gravity = 0.5;
-let velocity = 0;
-let isGameOver = true;
-let pipes = [];
-let score = 0;
-let bestScore = localStorage.getItem('bestScore') || 0;
-
-// Show Start Message
-let startMessage = document.createElement('div');
-startMessage.innerText = "Click or Press SPACE to Start!";
-startMessage.style.position = 'absolute';
-startMessage.style.top = '50%';
-startMessage.style.left = '50%';
-startMessage.style.transform = 'translate(-50%, -50%)';
-startMessage.style.fontSize = '24px';
-startMessage.style.color = 'white';
-game.appendChild(startMessage);
-
-function gameLoop() {
-  if (isGameOver) return;
-
-  velocity += gravity;
-  birdTop += velocity;
-  bird.style.top = birdTop + 'px';
-
-  for (let i = 0; i < pipes.length; i++) {
-    pipes[i].x -= 2;
-    pipes[i].top.style.left = pipes[i].x + 'px';
-    pipes[i].bottom.style.left = pipes[i].x + 'px';
-
-    if (
-      pipes[i].x < 90 && pipes[i].x > 10 &&
-      (birdTop < pipes[i].gapTop || birdTop > pipes[i].gapTop + 150)
-    ) {
-      endGame();
-    }
-
-    if (pipes[i].x === 50) {
-      score++;
-      updateScore();
-    }
-  }
-
-  if (pipes.length && pipes[0].x < -60) {
-    pipes[0].top.remove();
-    pipes[0].bottom.remove();
-    pipes.shift();
-  }
-
-  if (birdTop > game.clientHeight - bird.offsetHeight || birdTop < 0) {
-    endGame();
-  }
-
-  requestAnimationFrame(gameLoop);
+function startDownload() {
+  window.open(downloadLink, '_blank');
 }
 
-function updateScore() {
-  if (score > bestScore) {
-    bestScore = score;
-    localStorage.setItem('bestScore', bestScore);
-  }
-  scoreDisplay.innerText = `Score: ${score} | Best: ${bestScore}`;
-}
-
-function endGame() {
-  isGameOver = true;
-  startMessage.style.display = 'block';
-}
-
-function jump() {
-  if (!isGameOver) {
-    velocity = -8;
-  }
-}
-
-function createPipe() {
-  if (isGameOver) return;
-
-  let gapTop = Math.random() * 200 + 50;
-  let gapHeight = 150;
-
-  let topPipe = document.createElement('div');
-  topPipe.className = 'pipe';
-  topPipe.style.height = gapTop + 'px';
-  topPipe.style.left = '400px';
-  game.appendChild(topPipe);
-
-  let bottomPipe = document.createElement('div');
-  bottomPipe.className = 'pipe';
-  bottomPipe.style.height = (game.clientHeight - gapTop - gapHeight) + 'px';
-  bottomPipe.style.top = (gapTop + gapHeight) + 'px';
-  bottomPipe.style.left = '400px';
-  game.appendChild(bottomPipe);
-
-  pipes.push({ top: topPipe, bottom: bottomPipe, x: 400, gapTop: gapTop });
-}
-
-function startGame() {
-  if (!isGameOver) return;
-
-  birdTop = 250;
-  velocity = 0;
-  score = 0;
-  pipes.forEach(pipe => {
-    pipe.top.remove();
-    pipe.bottom.remove();
+fetch(userRawUrl)
+  .then(response => response.text())
+  .then(data => {
+    const count = (data.match(/user\s*=\s*/gi) || []).length;
+    document.getElementById("user-count").textContent = `📊 Total Users: ${count}`;
+  })
+  .catch(() => {
+    document.getElementById("user-count").textContent = '⚠️ Failed to load user data.';
   });
-  pipes = [];
-  updateScore();
-  startMessage.style.display = 'none';
-  isGameOver = false;
-  gameLoop();
+
+// Email modal functions
+function openEmailModal() {
+  document.getElementById('emailModal').style.display = 'flex';
+}
+function closeEmailModal() {
+  document.getElementById('emailModal').style.display = 'none';
+}
+function copyEmail() {
+  const email = document.getElementById('emailAddress').textContent;
+  navigator.clipboard.writeText(email);
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = 'Copy Email', 2000);
 }
 
-// Controls
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Space') {
-    if (isGameOver) {
-      startGame();
-    } else {
-      jump();
+// Raining particles effect
+const canvas = document.getElementById('rainCanvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+function createRainDrop() {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    length: Math.random() * 20 + 10,
+    speed: Math.random() * 2 + 2
+  };
+}
+for (let i = 0; i < 100; i++) {
+  particles.push(createRainDrop());
+}
+
+function drawRain() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+  ctx.lineWidth = 1;
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(p.x, p.y + p.length);
+    ctx.stroke();
+    p.y += p.speed;
+    if (p.y > canvas.height) {
+      p.y = -p.length;
+      p.x = Math.random() * canvas.width;
     }
-  }
-});
+  });
 
-document.addEventListener('mousedown', function () {
-  if (isGameOver) {
-    startGame();
-  } else {
-    jump();
-  }
-});
-
-// Pipe creation interval
-setInterval(createPipe, 2000);
+  requestAnimationFrame(drawRain);
+}
+drawRain();
