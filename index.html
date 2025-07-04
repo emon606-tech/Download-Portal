@@ -2,115 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Flappy Bird Game</title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      user-select: none;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    #game {
-      position: relative;
-      width: 320px;
-      height: 480px;
-      background: #222;
-      border: 2px solid #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      z-index: 10;
-    }
-    #bird {
-      position: absolute;
-      width: 34px;
-      height: 24px;
-      background: yellow;
-      border-radius: 50% / 35%;
-      top: 250px;
-      left: 50px;
-      transition: transform 0.1s ease;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      z-index: 2;
-    }
-    .pipe {
-      position: absolute;
-      width: 60px;
-      background: #228B22;
-      border-radius: 0 10px 10px 0;
-      z-index: 1;
-    }
-    #score {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      color: #fff;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px #000;
-      user-select: none;
-      font-size: 18px;
-      z-index: 10;
-    }
-    #rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
-      background: transparent;
-    }
-    .raindrop {
-      position: absolute;
-      bottom: 100%;
-      width: 2px;
-      height: 15px;
-      background: rgba(255, 255, 255, 0.5);
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MissionPay Downloader</title>
+  <link href="style.css" rel="stylesheet" />
 </head>
 <body>
 
-  <div id="rain"></div>
+<canvas id="rainCanvas"></canvas>
 
-  <div id="game">
-    <div id="bird"></div>
-    <div id="score">Score: 0 | Best: 0</div>
+<main class="container">
+  <h1>MissionPay Downloader</h1>
+  <p id="user-count">Loading user info...</p>
+  <button class="download-btn" onclick="startDownload()">📦 Download Now</button>
+</main>
+
+<footer class="footer">
+  <h2>🤝 Connect With Us</h2>
+  <div class="social-icons">
+    <a href="https://www.youtube.com/" target="_blank"><img src="icons/youtube.png" alt="YouTube"></a>
+    <a href="https://www.facebook.com/" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
+    <a href="https://www.whatsapp.com/" target="_blank"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
+    <a href="https://www.telegram.com/" target="_blank"><img src="icons/telegram.png" alt="Telegram"></a>
+    <a href="https://www.discord.com/" target="_blank"><img src="icons/discord.png" alt="Discord"></a>
+    <a href="#" onclick="openEmailModal()"><img src="icons/gmail.png" alt="Gmail"></a>
   </div>
+  <div class="copyright">
+    &copy; MissionPay 2025. All Rights Reserved.
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<!-- Email Modal -->
+<div id="emailModal">
+  <div id="emailModalContent">
+    <span id="closeModal" onclick="closeEmailModal()">&times;</span>
+    <h3>Contact us via Email</h3>
+    <div id="emailAddress">islamnafij83@gmail.com</div>
+    <button id="copyBtn" onclick="copyEmail()">Copy Email</button>
+  </div>
+</div>
 
-  <script>
-    const rainContainer = document.getElementById('rain');
-    const numberOfDrops = 100;
-    for (let i = 0; i < numberOfDrops; i++) {
-      const drop = document.createElement('div');
-      drop.classList.add('raindrop');
-      drop.style.left = Math.random() * 100 + 'vw';
-      drop.style.animationDelay = (Math.random() * 5) + 's';
-      drop.style.animationDuration = (0.5 + Math.random() * 0.8) + 's';
-      rainContainer.appendChild(drop);
-    }
-  </script>
-
-  <!-- ✅ PropellerAds Ad Code -->
-  <script async="async" data-cfasync="false" src="//pl26665847.profitableratecpm.com/fa67ee96a7e6200ab883bdd8d8259ea8/invoke.js"></script>
-  <div id="container-fa67ee96a7e6200ab883bdd8d8259ea8"></div>
+<script src="script.js"></script>
 
 </body>
 </html>
