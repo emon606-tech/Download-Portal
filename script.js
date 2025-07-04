@@ -1,8 +1,17 @@
 const userRawUrl = 'https://raw.githubusercontent.com/emon606-tech/usr/main/user.txt';
-const downloadLink = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay.zip';
 
-function startDownload() {
-  window.open(downloadLink, '_blank');
+// English version download link
+const downloadLinkEnglish = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay.zip';
+
+// Bangla version download link (replace with your actual Bangla version zip raw link)
+const downloadLinkBangla = 'https://raw.githubusercontent.com/nafijdev/missionpay/main/missionpay_bangla.zip';
+
+function startDownloadEnglish() {
+  window.open(downloadLinkEnglish, '_blank');
+}
+
+function startDownloadBangla() {
+  window.open(downloadLinkBangla, '_blank');
 }
 
 fetch(userRawUrl)
