@@ -21,11 +21,11 @@
 <footer class="footer">
   <h2>🤝 Connect With Us</h2>
   <div class="social-icons">
-    <a href="#"><img src="icons/youtube.png" alt="YouTube"></a>
-    <a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
-    <a href="#"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
-    <a href="#"><img src="icons/telegram.png" alt="Telegram"></a>
-    <a href="#"><img src="icons/discord.png" alt="Discord"></a>
+    <a href="https://www.youtube.com/@MissionPay" target="_blank"><img src="icons/youtube.png" alt="YouTube"></a>
+    <a href="https://www.facebook.com/" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
+    <a href="https://chat.whatsapp.com/DEX4SZXjsVm3RLcjqy59e5" target="_blank"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
+    <a href="https://t.me/+ceUHoXnBJpViMGU9"_blank"><img src="icons/telegram.png" alt="Telegram"></a>
+    <a href="https://discord.gg/5m4T72zyFt="_blank"><img src="icons/discord.png" alt="Discord"></a>
     <a href="#" onclick="openEmailModal()"><img src="icons/gmail.png" alt="Gmail"></a>
   </div>
   <div class="copyright">
@@ -34,15 +34,44 @@
 </footer>
 
 <!-- Email Modal -->
-<div id="emailModal">
-  <div id="emailModalContent">
-    <span id="closeModal" onclick="closeEmailModal()">&times;</span>
+<div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+  <div id="emailModalContent" style="background:white; padding:20px; border-radius:10px; text-align:center; position:relative;">
+    <span id="closeModal" onclick="closeEmailModal()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;">&times;</span>
     <h3>Contact us via Email</h3>
     <div id="emailAddress">islamnafij83@gmail.com</div>
     <button id="copyBtn" onclick="copyEmail()">Copy Email</button>
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  // Dummy functions
+  function startDownloadEnglish() {
+    alert("Downloading MissionPay English...");
+  }
+
+  function startDownloadBangla() {
+    alert("Downloading MissionPay Bangla...");
+  }
+
+  // Modal handling
+  function openEmailModal() {
+    document.getElementById("emailModal").style.display = "flex";
+  }
+
+  function closeEmailModal() {
+    document.getElementById("emailModal").style.display = "none";
+  }
+
+  function copyEmail() {
+    const email = document.getElementById("emailAddress").innerText;
+    navigator.clipboard.writeText(email).then(() => {
+      alert("Email address copied to clipboard!");
+    });
+  }
+
+  // Simulate user info loading
+  document.getElementById("user-count").innerText = "1,024 users have downloaded MissionPay!";
+</script>
+
 </body>
 </html>
